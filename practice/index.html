@@ -1,10 +1,47 @@
 <!doctype html>
 <html lang='en'>
+
 <head>
-	<title>Practice Application</title>
+	<title>Intro</title>
 	<meta charset='utf-8'>
+
+	<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
+	<script src='script.js' defer></script>
+
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+	</style>
 </head>
+
 <body>
-	<h1>Practice Application</h1>
+	<h1>Intro</h1>
+
+	<div id='app' v-cloak>
+
+		High guesses:
+		<ul>
+			<li v-for='thisGuess in guesses' v-if='thisGuess > answer'>{{ thisGuess }}</li>
+		</ul>
+
+
+		<div>
+			<label>What’s your name? <input type='text' v-model='playerName'></label>
+			<p v-if='playerName'>Player: {{ playerName }}</p>
+			<p v-else>Enter your player name to begin the game.</p>
+		</div>
+
+		<div v-if='playerName'>
+			<label>What’s your guess? <input type='text' v-model.number='guess' v-on:keyup.enter='submitGuess'></label>
+			<button v-on:click='submitGuess'>Guess</button>
+			<ul>
+				<li v-for='thisGuess in highGuesses'>{{ thisGuess }}</li>
+			</ul>
+		</div>
+
+	</div>
+
 </body>
+
 </html>
