@@ -14,15 +14,3 @@ class range {
         this.west = w;
     }
 }
-/***************************************************************
- * Represents a coordinate on a game board.
- * @constructor
- * @param {number} x - Required. X position on gameboard.
- * @param {number} y - Required. Y position on gameboard.
- ****************************************************************/
-class coordinate {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
