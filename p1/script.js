@@ -12,6 +12,8 @@ let app = new Vue({
         'waitTime': 55,
         'generation': 0,
         'maxGenerations': 1000,
+        'organism': "@",
+        'empty': "."
     },
     methods: {
         resetBoard: function () {
@@ -20,7 +22,7 @@ let app = new Vue({
             for (let x = 0; x < this.cellsWide; x++) {
                 this.gameBoard.push([]);
                 for (let y = 0; y < this.cellsTall; y++) {
-                    this.gameBoard[x].push(".");
+                    this.gameBoard[x].push(this.empty);
                 }
             }
         },
@@ -42,12 +44,12 @@ let app = new Vue({
                 for (let y = 0; y < this.cellsTall; y++) {
                     let cell = currentBoard[x][y];
                     let numberOfNeighbors = this.getNumberOfNeighbors(x, y, currentBoard);
-                    if (cell == "*") {
+                    if (cell == this.organism) {
                         if (numberOfNeighbors < 2 || numberOfNeighbors > 3) {
-                            this.gameBoard[x].splice(y, 1, ".");
+                            this.gameBoard[x].splice(y, 1, this.empty);
                         }
                     } else if (numberOfNeighbors == 3) {
-                        this.gameBoard[x].splice(y, 1, "*");
+                        this.gameBoard[x].splice(y, 1, this.organism);
                     }
                 }
             }
@@ -62,11 +64,11 @@ let app = new Vue({
             for (let j = 0; j < amount;) {
                 let x = Math.floor(Math.random() * this.cellsWide);
                 let y = Math.floor(Math.random() * this.cellsTall);
-                if (this.gameBoard[x][y] == ".") {
-                    this.gameBoard[x].splice(y, 1, "*");
+                if (this.gameBoard[x][y] == this.empty) {
+                    this.gameBoard[x].splice(y, 1, this.organism);
                 } else {
-                    this.gameBoard[x][y] = ".";
-                    this.gameBoard[x].splice(y, 1, "*");
+                    this.gameBoard[x][y] = this.empty;
+                    this.gameBoard[x].splice(y, 1, this.organism);
                 }
                 j++;
             }
@@ -84,7 +86,7 @@ let app = new Vue({
             for (let x = range.west; x <= range.east; x++) {
                 for (let y = range.north; y <= range.south; y++) {
                     let cell = board[x][y];
-                    if (cell == "*" && !((thisX == x) && (thisY == y))) {
+                    if (cell == this.organism && !((thisX == x) && (thisY == y))) {
                         numberOfNeighbors++;
                     }
                 }
@@ -92,10 +94,10 @@ let app = new Vue({
             return numberOfNeighbors;
         },
         toggleCell: function (x, y) {
-            if (this.gameBoard[x][y] == ".") {
-                this.gameBoard[x].splice(y, 1, "*");
+            if (this.gameBoard[x][y] == this.empty) {
+                this.gameBoard[x].splice(y, 1, this.organism);
             } else {
-                this.gameBoard[x].splice(y, 1, ".");
+                this.gameBoard[x].splice(y, 1, this.empty);
             }
         },
     }

@@ -2,7 +2,7 @@
 <html lang='en'>
 
 <head>
-	<title>Project 1</title>
+	<title>Project 11</title>
 	<meta charset='utf-8'>
 
 	<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
@@ -29,17 +29,19 @@
 
 	<div id='app' v-cloak>
 		<table>
-			<tr v-for="(row, rowKey, index) in gameBoard" :key="rowKey">
-				<td v-for="(column, colKey, index) in row" :key="colKey" v-on:click="toggleCell(rowKey, colKey)">
+			<tr v-for="(row, rowKey) in gameBoard" :key="rowKey">
+				<td v-for="(column, columnKey) in row" :key="columnKey" v-on:click="toggleCell(rowKey, columnKey)">
 					{{column}}
 				</td>
 			</tr>
 		</table>
-		<button v-on:click='addRandom(100)'>Add Random</button>
-		<button v-on:click='resetBoard()'>Reset</button>
-		<button v-on:click='playGame()'>Start</button>
-		<button v-on:click='stopGame()'>Stop</button>
-		<button v-on:click='nextFrame()'>Next</button>
+		<p>
+			<button v-on:click='addRandom(100)'>Add Random</button>
+			<button v-on:click='resetBoard()'>Reset</button>
+			<button v-on:click='playGame()'>Start</button>
+			<button v-on:click='stopGame()'>Stop</button>
+			<button v-on:click='nextFrame()'>Next</button>
+		</p>
 		<p>Generation: {{generation}}</p>
 	</div>
 
