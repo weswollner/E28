@@ -36,11 +36,23 @@
 			</tr>
 		</table>
 		<p>
-			<button v-on:click='addRandom(100)'>Add Random</button>
-			<button v-on:click='resetBoard()'>Reset</button>
-			<button v-on:click='playGame()'>Start</button>
-			<button v-on:click='stopGame()'>Stop</button>
-			<button v-on:click='nextFrame()'>Next</button>
+			<p>
+				<p>
+					Width: <input v-model='cellsWide'>
+					Height: <input v-model='cellsTall'>
+				</p>
+				<p>
+					Alive Cell: <input v-model='organism'>
+					Dead Cell: <input v-model='empty'>
+				</p>
+			</p>
+			<p>
+				<button v-on:click='addRandom(100)'>Add Random</button>
+				<button v-on:click='resetBoard()'>Reset</button>
+				<button v-on:click='playGame()'>Start</button>
+				<button v-on:click='stopGame()'>Stop</button>
+				<button v-on:click='nextFrame()'>Next</button>
+			</p>
 		</p>
 		<p>Generation: {{generation}}</p>
 	</div>
