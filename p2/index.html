@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+	<title>Project 2</title>
+	<meta charset='utf-8'>
+
+	<script src='./js/script.js' defer></script>
+
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+
+		body {
+			font-family: courier
+		}
+
+		table {
+			border: 1px solid black
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Project 2</h1>
+
+	<div id='app' v-cloak>
+		<table>
+			<tr v-for="(row, rowKey) in gameBoard" :key="rowKey">
+				<td v-for="(column, columnKey) in row" :key="columnKey" v-on:click="toggleCell(rowKey, columnKey)">
+					{{column}}
+				</td>
+			</tr>
+		</table>
+		<p>
+			<p>
+				<p>
+					Width: <input v-model='cellsWide'>
+					Height: <input v-model='cellsTall'>
+				</p>
+				<p>
+					Alive Cell: <input v-model='organism'>
+					Dead Cell: <input v-model='empty'>
+				</p>
+			</p>
+			<p>
+				<button v-on:click='addRandom(100)'>Add Random</button>
+				<button v-on:click='resetBoard()'>Reset</button>
+				<button v-on:click='playGame()'>Start</button>
+				<button v-on:click='stopGame()'>Stop</button>
+				<button v-on:click='nextFrame()'>Next</button>
+			</p>
+		</p>
+		<p>Generation: {{generation}}</p>
+	</div>
+
+</body>
+
+</html>
