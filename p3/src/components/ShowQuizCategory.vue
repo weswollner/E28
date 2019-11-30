@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: 'ShowCategory',
+    name: 'ShowQuizCategory',
     props: ['category']
 };
 </script>

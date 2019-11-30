@@ -1,15 +1,15 @@
 <template>
   <div id="categories">
     <h2>Quiz Categories</h2>
-    <show-category v-for="category in categories" :key="category" :category="category"></show-category>
+    <show-quiz-category v-for="category in categories" :key="category" :category="category"></show-quiz-category>
   </div>
 </template>
 
 <script>
-import ShowCategory from "./ShowCategory.vue";
+import ShowQuizCategory from "./ShowQuizCategory.vue";
 export default {
-  name: "QuizCategoriesPage",
-  components: { ShowCategory },
+  name: "ShowQuizCategories",
+  components: { ShowQuizCategory },
   computed: {
     questions: function() {
       return this.$store.state.questions;

@@ -8,10 +8,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         questions: [],
+        answers:[]
     },
     mutations: {
         setQuestions(state, payload) {
             state.questions = payload;
+        },
+        updateAnswers(state,payload) {
+            const found = state.answers.find(a => a.id === payload.id);
+            if (!found) {
+                state.answers.push(payload);
+            }
         }
     },
     actions: {
@@ -26,8 +33,11 @@ export default new Vuex.Store({
             return function (category) {
             return state.questions.filter(function(question){
                 return question.category === category;
-            })
+                })
             }
+        },
+        getAllAnswers(state) {
+            return state.answers;
         }
     }
 })

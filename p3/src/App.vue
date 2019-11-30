@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <h1>Quiz Time!</h1>
-    <nav>
+    <!-- <nav>
       <div v-for="link in links" :key="link">
         <router-link exact :to="{ name: link }">{{ link }}</router-link>
       </div>
-    </nav>
+    </nav>-->
     <router-view></router-view>
   </div>
 </template>
@@ -16,13 +16,8 @@ export default {
   components: {},
   data: function() {
     return {
-      links: ["home"]
+      links: ["home", "ShowSubmittedQuiz"]
     };
-  },
-  computed: {
-    cartCount: function() {
-      return this.$store.state.cartCount;
-    }
   },
   mounted() {
     this.$store.dispatch("setQuestions");

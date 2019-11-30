@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
-import CategoryPage from './components/CategoryPage.vue';
+import ShowQuiz from './components/ShowQuiz.vue';
 import HomePage from './components/HomePage.vue';
+import ShowSubmittedQuiz from './components/ShowSubmittedQuiz';
 
 import store from './store'
 
@@ -11,7 +12,8 @@ Vue.config.productionTip = false
 
 const routes = [
     { path: '/', component: HomePage, name: 'home' },
-    { path: '/category/:category', component: CategoryPage, name: 'category', props: true },
+    { path: '/category/:category', component: ShowQuiz, name: 'category', props: true },
+    { path: '/ShowSubmittedQuiz', component: ShowSubmittedQuiz, name: 'ShowSubmittedQuiz', props: true },
 ]
 
 const router = new VueRouter({
