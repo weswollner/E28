@@ -31,10 +31,10 @@ export default new Vuex.Store({
     getters: {
         getQuestionsByCategory(state) {
             return function (category) {
-            return state.questions.filter(function(question){
-                return question.category === category;
-                })
-            }
+                return state.questions.filter(function(question){
+                    return question.category === category;
+                    })
+                }
         },
         getAllAnswers(state) {
             return state.answers;

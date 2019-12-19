@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>To get started, choose a category listed below...</p>
+    <p>Welcom to Quiz Time! To get started, choose from a category listed below...</p>
     <show-quiz-categories></show-quiz-categories>
   </div>
 </template>
