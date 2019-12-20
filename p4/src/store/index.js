@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import * as app from './../app.js';
-
 Vue.use(Vuex)
+
+const axios = require('axios');
+const config = {
+    api: 'https://e28-project.firebaseio.com/',
+}
 
 export default new Vuex.Store({
     state: {
@@ -23,7 +25,7 @@ export default new Vuex.Store({
     },
     actions: {
         setQuestions(context) {
-            app.axios.get("https://e28-project.firebaseio.com/" + 'questions.json').then(response => {
+            axios.get(config.api + 'questions.json').then(response => {
             context.commit('SET_QUESTIONS', response.data);
             });
         }
