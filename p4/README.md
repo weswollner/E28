@@ -1,24 +1,9 @@
-# p4
+# Project 4
++ By: Wes Wollner
++ Production URL: <http://p4.weswollner.me>
 
-## Project setup
-```
-npm install
-```
+## Outside resources
+notes and examples from class; one reference to stackoverflow in code comments for guid creation
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Notes for instructor
+loved working with unit and e2e testing compared to what i have at work...
