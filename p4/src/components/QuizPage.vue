@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Here is your quiz with questions from the categories of:</h3>
-    <div v-for="categorySelected in selected" :key="categorySelected">{{categorySelected}}</div>
+    <div v-for="categorySelected in selectedCategories" :key="categorySelected">{{categorySelected}}</div>
     <p>Good Luck!</p>
     <div v-for="(question, index) in questions" :key="question.id">
       <p>
@@ -23,6 +23,7 @@
         </select>
       </div>
     </div>
+
     <p v-if="allQuestionsAnswered">
       <button @click="submitQuiz">Submit Quiz</button>
     </p>
@@ -31,14 +32,15 @@
 </template>
 
 <script>
+import * as app from "./../app.js";
 export default {
   name: "QuizPage",
-  props: ["selected"],
+  props: ["selectedCategories"],
   components: {},
   computed: {
     questions: function() {
-      var allQuestionsForCategories = [];
-      this.selected.forEach(questionCategory => {
+      let allQuestionsForCategories = [];
+      this.selectedCategories.forEach(questionCategory => {
         allQuestionsForCategories.push(
           this.$store.getters.getQuestionsByCategory(questionCategory)
         );
@@ -58,15 +60,56 @@ export default {
   },
   methods: {
     submitQuiz: function() {
-      this.$router.push({
-        name: "results",
-        params: { questions: this.questions, answers: this.answers }
+      if (!this.formHasErrors) {
+        let correctAnswers = [];
+        this.questions.forEach(question => {
+          correctAnswers.push(question.answer);
+        });
+
+        this.quiz = {
+          guid: this.generateGuid(),
+          questionsSubmitted: this.questions,
+          answersSubmitted: this.answers,
+          grade: this.gradeQuiz(this.answers, correctAnswers),
+          dateSubmitted: new Date().toLocaleDateString(),
+          timeSubmitted: new Date().toLocaleTimeString()
+        };
+
+        app.axios.post(app.config.api + "quizzes.json", this.quiz);
+
+        this.$router.push({
+          name: "results",
+          params: { quiz: this.quiz }
+        });
+      }
+    },
+    gradeQuiz: function(submittedAnswers, correctAnswers) {
+      let numberCorrect = 0;
+      correctAnswers.forEach(function(correctAnswer, index) {
+        if (correctAnswer == submittedAnswers[index]) {
+          numberCorrect++;
+        }
       });
+      return ((numberCorrect / correctAnswers.length) * 100).toFixed(2);
+    },
+    // reference: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+    generateGuid: function() {
+      let u =
+        Date.now().toString(16) + Math.random().toString(16) + "0".repeat(16);
+      let guid = [
+        u.substr(0, 8),
+        u.substr(8, 4),
+        "4000-8" + u.substr(13, 3),
+        u.substr(16, 12)
+      ].join("-");
+      return guid;
     }
   },
   data: function() {
     return {
-      answers: []
+      answers: [],
+      quiz: null,
+      formHasErrors: false
     };
   }
 };

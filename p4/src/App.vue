@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <h1>It's Quiz Time!</h1>
+    <nav>
+      <div v-for="link in links" :key="link">
+        <router-link exact :to="{ name: link }">{{ link }}</router-link>
+      </div>
+    </nav>
     <router-view></router-view>
   </div>
 </template>
@@ -10,10 +15,11 @@ export default {
   name: "app",
   components: {},
   data: function() {
-    return {};
+    return { links: ["home", "quizzes"] };
   },
   mounted() {
     this.$store.dispatch("setQuestions");
+    this.$store.dispatch("setQuizzes");
   }
 };
 </script>

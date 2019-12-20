@@ -9,10 +9,13 @@
     <p></p>
     <p v-if="categoryIsSelected">
       <button
-        @click="$router.push({name:'quiz',params: {selected: selectedCategories},})"
+        @click="$router.push({name:'quiz',params: {selectedCategories: selectedCategories},})"
       >Start Quiz</button>
     </p>
     <p v-else-if="!categoryIsSelected">Select a category</p>
+    <p>
+      <router-link :to="{ name: 'quizzes'}">Or Check Out Past Quiz Results</router-link>
+    </p>
   </div>
 </template>
 

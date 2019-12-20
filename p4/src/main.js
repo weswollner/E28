@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomePage from './components/HomePage.vue';
 import QuizPage from './components/QuizPage.vue';
 import ResultsPage from './components/ResultsPage';
+import PastQuizzesPage from './components/PastQuizzesPage';
 
 import store from './store'
 
@@ -14,6 +15,7 @@ const routes = [
     { path: '/', component: HomePage, name: 'home' },
     { path: '/quiz', component: QuizPage, name: 'quiz', props: true },
     { path: '/results', component: ResultsPage, name: 'results', props: true },
+    { path: '/quizzes', component: PastQuizzesPage, name: 'quizzes' },
 ]
 
 const router = new VueRouter({

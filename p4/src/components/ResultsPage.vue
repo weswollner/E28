@@ -1,14 +1,18 @@
 <template>
   <div>
     <h3>Your Quiz Results:</h3>
-    <div v-for="(question, index) in questions" :key="question.id">
+    <p>Grade: {{quiz.grade}}</p>
+    <div v-for="(question, index) in quiz.questionsSubmitted" :key="question.id">
       <p>
-        <b>Question: {{index + 1 }} of {{questions.length}}</b>
+        <b>Question: {{index + 1 }} of {{quiz.questionsSubmitted.length}}</b>
       </p>
       {{question.question}}
-      <p>Your answer: {{answers[index]}}</p>
+      <p>Your answer: {{quiz.answersSubmitted[index]}}</p>
       <p>Correct answer: {{question.answer}}</p>
     </div>
+    <p>
+      <button @click="$router.push({name:'home'})">Take Another Quiz!</button>
+    </p>
   </div>
 </template>
 
@@ -16,7 +20,7 @@
 export default {
   name: "ResultsPage",
   components: {},
-  props: ["questions", "answers"],
+  props: ["quiz"],
   data: function() {
     return {};
   }
